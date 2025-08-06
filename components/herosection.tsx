@@ -86,15 +86,31 @@ export default function HeroSection(){
                     </Button>
                 </div>
             </div>
-            <div className="absolute  top-3 left-1/2 transform -translate-x-1/2">
+            
+            {/* Social proof section with Product Hunt badge */}
+            <div className="absolute top-3 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3">
                 <Button 
                     variant="outline" 
-                    className="text-muted  border-border hover:text-foreground transition-colors bg-primary"
-                    
+                    className="text-muted border-border hover:text-foreground transition-colors bg-primary"
                 >
-                Trusted by 10,000+ developers
-
+                    Trusted by 10,000+ developers
                 </Button>
+                
+                {/* Product Hunt Badge */}
+                <a 
+                    href="https://www.producthunt.com/products/docstart?embed=true&utm_source=badge-featured&utm_medium=badge&utm_source=badge-docstart" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="transition-transform hover:scale-105"
+                >
+                    <img 
+                        src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1002474&theme=light&t=1754502085589" 
+                        alt="DocStart - Write in Notion see it live instantly no setup just docs | Product Hunt" 
+                        style={{width: "250px", height: "54px"}} 
+                        width="250" 
+                        height="54" 
+                    />
+                </a>
             </div>
             
             {/* Bottom pattern */}
