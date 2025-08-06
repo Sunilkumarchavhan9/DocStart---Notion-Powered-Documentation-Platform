@@ -117,7 +117,7 @@ export async function POST(request: NextRequest) {
       posts,
       message: scheduledTime ? 'Posts scheduled successfully' : 'Posts published successfully'
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to create social posts' }, { status: 500 });
   }
 }
@@ -160,14 +160,14 @@ async function triggerSocialPost(post: any) {
     // 4. Handle Instagram posts (usually manual)
     
     // Published successfully
-  } catch (error) {
+  } catch {
     // Failed to publish
     
     await prisma.socialPost.update({
       where: { id: post.id },
       data: { 
         status: 'failed',
-        error: error instanceof Error ? error.message : 'Unknown error'
+        error: 'Unknown error'
       },
     });
   }
@@ -207,7 +207,7 @@ export async function GET(request: NextRequest) {
     });
 
     return NextResponse.json({ posts });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to fetch posts' }, { status: 500 });
   }
 } 

@@ -1,6 +1,7 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
 interface PageProps {
   params: Promise<{ projectSlug: string; documentSlug: string }>;
@@ -63,12 +64,12 @@ export default async function PublicDocumentPage({ params }: PageProps) {
           <div className="text-center text-sm text-gray-500">
             <p>Powered by DocStart</p>
             <p className="mt-2">
-              <a 
-                href="/" 
-                className="text-blue-600 hover:text-blue-800 underline"
-              >
-                Create your own documentation
-              </a>
+                          <Link 
+              href="/" 
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              Create your own documentation
+            </Link>
             </p>
           </div>
         </footer>

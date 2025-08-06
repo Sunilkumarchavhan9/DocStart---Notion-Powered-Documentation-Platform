@@ -23,7 +23,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ results: [] });
     }
 
-    let results = [];
+    const results = [];
 
     // Search in projects
     if (type === 'all' || type === 'projects') {

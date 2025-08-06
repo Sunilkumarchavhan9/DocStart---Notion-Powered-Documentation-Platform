@@ -154,7 +154,7 @@ function generatePDFContent(title: string, content: string): string {
 
 function generateMarkdownContent(title: string, content: string): string {
   // Convert HTML content to Markdown
-  let markdownContent = content
+  const markdownContent = content
     .replace(/<h1[^>]*>(.*?)<\/h1>/gi, '# $1\n')
     .replace(/<h2[^>]*>(.*?)<\/h2>/gi, '## $1\n')
     .replace(/<h3[^>]*>(.*?)<\/h3>/gi, '### $1\n')
