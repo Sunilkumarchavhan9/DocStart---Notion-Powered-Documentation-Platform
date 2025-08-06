@@ -6,7 +6,7 @@
     "dev": "next dev",
     "dev:all": "concurrently \"npm run dev\" \"npm run websocket\"",
     "websocket": "tsx server/websocket-server.ts",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "db:generate": "prisma generate",
