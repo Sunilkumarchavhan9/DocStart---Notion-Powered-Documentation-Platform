@@ -13,7 +13,7 @@ const commentSchema = z.object({
 // Get comments for a document
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string; documentSlug: string } }
+  { params }: { params: Promise<{ slug: string; documentSlug: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -25,7 +25,7 @@ export async function GET(
       );
     }
 
-    const { slug, documentSlug } = params;
+    const { slug, documentSlug } = await params;
 
     // Get project and verify access
     const project = await prisma.project.findFirst({
@@ -95,7 +95,7 @@ export async function GET(
 // Create a new comment
 export async function POST(
   request: NextRequest,
-  { params }: { params: { slug: string; documentSlug: string } }
+  { params }: { params: Promise<{ slug: string; documentSlug: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -107,7 +107,7 @@ export async function POST(
       );
     }
 
-    const { slug, documentSlug } = params;
+    const { slug, documentSlug } = await params;
     const body = await request.json();
     const { content, lineNumber, parentId } = commentSchema.parse(body);
 
