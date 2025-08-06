@@ -1,5 +1,14 @@
 import { prisma } from "./prisma";
-import { ActivityType } from "@prisma/client";
+
+type ActivityType = 
+  | "PROJECT_CREATED"
+  | "PROJECT_UPDATED"
+  | "DOCUMENT_CREATED"
+  | "DOCUMENT_UPDATED"
+  | "DOCUMENT_PUBLISHED"
+  | "COMMENT_ADDED"
+  | "MEMBER_ADDED"
+  | "MEMBER_REMOVED";
 
 interface LogActivityParams {
   type: ActivityType;
