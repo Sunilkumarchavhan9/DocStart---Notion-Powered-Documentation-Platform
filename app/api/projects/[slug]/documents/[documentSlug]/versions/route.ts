@@ -6,7 +6,7 @@ import { authOptions } from "@/lib/auth";
 // Get document version history
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string; documentSlug: string } }
+  { params }: { params: Promise<{ slug: string; documentSlug: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
