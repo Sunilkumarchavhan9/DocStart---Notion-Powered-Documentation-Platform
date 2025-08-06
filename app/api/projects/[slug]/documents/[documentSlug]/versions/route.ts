@@ -18,7 +18,7 @@ export async function GET(
       );
     }
 
-    const { slug, documentSlug } = params;
+    const { slug, documentSlug } = await params;
 
     // Get project and verify access
     const project = await prisma.project.findFirst({
@@ -67,7 +67,7 @@ export async function GET(
 // Create new version (auto-save)
 export async function POST(
   request: NextRequest,
-  { params }: { params: { slug: string; documentSlug: string } }
+  { params }: { params: Promise<{ slug: string; documentSlug: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -79,7 +79,7 @@ export async function POST(
       );
     }
 
-    const { slug, documentSlug } = params;
+    const { slug, documentSlug } = await params;
     const { content, title } = await request.json();
 
     // Get project and verify access
