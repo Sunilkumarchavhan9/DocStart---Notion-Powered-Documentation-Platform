@@ -5,7 +5,7 @@ import { authOptions } from "@/lib/auth";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { slug: string; documentSlug: string } }
+  { params }: { params: Promise<{ slug: string; documentSlug: string }> }
 ) {
   try {
     const session = await getServerSession(authOptions);
@@ -16,12 +16,14 @@ export async function GET(
     const { searchParams } = new URL(request.url);
     const format = searchParams.get("format") || "html";
 
+    const { slug, documentSlug } = await params;
+
     // Get document with project info
     const document = await prisma.document.findFirst({
       where: {
-        slug: params.documentSlug,
+        slug: documentSlug,
         project: {
-          slug: params.slug,
+          slug: slug,
           OR: [
             { userId: session.user.id },
             { members: { some: { userId: session.user.id } } }
